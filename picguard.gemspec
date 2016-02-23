@@ -6,12 +6,12 @@ require 'picguard/version'
 Gem::Specification.new do |spec|
   spec.name          = "picguard"
   spec.version       = Picguard::VERSION
-  spec.authors       = ["Szymon Baranowski"]
-  spec.email         = ["szymon.baranowski@netguru.pl"]
+  spec.authors       = ["Szymon Baranowski", "Tomasz Jaśkiewicz"]
+  spec.email         = ["szymon.baranowski@netguru.pl", "tomasz.jaskiewicz@netguru.pl"]
 
-  spec.summary       = %q{TODO: Write a short summary, because Rubygems requires one.}
-  spec.description   = %q{TODO: Write a longer description or delete this line.}
-  spec.homepage      = "TODO: Put your gem's website or public repo URL here."
+  spec.summary       = %q{A gem for filtering a pictures that are being uploaded to your server.}
+  spec.description   = %q{Picguard guards your application by filtering out the pictures containing inappropriate content.}
+  spec.homepage      = "https://github.com/netguru/picguard"
   spec.license       = "MIT"
 
   # Prevent pushing this gem to RubyGems.org by setting 'allowed_push_host', or
