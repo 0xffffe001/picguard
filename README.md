@@ -1,3 +1,5 @@
+[![Code Climate](https://codeclimate.com/repos/56cdc29e7220a54948003189/badges/6455466a41f102f5f517/gpa.svg)](https://codeclimate.com/repos/56cdc29e7220a54948003189/feed) [![Test Coverage](https://codeclimate.com/repos/56cdc29e7220a54948003189/badges/6455466a41f102f5f517/coverage.svg)](https://codeclimate.com/repos/56cdc29e7220a54948003189/coverage)
+
 # Picguard
 Picguard guards your application by filtering out the pictures containing inappropriate content.
 It uses Google Vision API to process the pictures.
@@ -36,4 +38,3 @@ Bug reports and pull requests are welcome on GitHub at https://github.com/netgur
 ## License
 
 The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
-
