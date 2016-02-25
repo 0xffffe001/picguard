@@ -14,7 +14,13 @@ module Picguard
     private_constant :RESPONSE_CLASSES
 
     def self.appropriate?(response, threshold)
-      RESPONSE_CLASSES.fetch(response.downcase.to_sym) <= RESPONSE_CLASSES.fetch(threshold.downcase.to_sym)
+      value_of(response) <= value_of(threshold)
+    end
+
+    private
+
+    def value_of(response)
+      RESPONSE_CLASSES.fetch(response.downcase.to_sym)
     end
   end
 end
