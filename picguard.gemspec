@@ -15,6 +15,7 @@ Gem::Specification.new do |spec|
   spec.license       = "MIT"
 
   spec.add_dependency "google-api-client"
+  spec.add_dependency "mini_magick"
   spec.add_development_dependency "pry"
   spec.add_development_dependency "bundler", "~> 1.11"
   spec.add_development_dependency "codeclimate-test-reporter"
