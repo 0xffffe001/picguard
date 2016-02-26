@@ -1,4 +1,4 @@
-require "likelihood"
+require 'services/validators/likelihood'
 
 module Services
   class Analyzer
@@ -28,8 +28,8 @@ module Services
 
     def analyze_safe_search_annotation(hash_result)
       {
-        violence: Picguard::Likelihood.violates?(hash_result[:violence], @threshold_violence),
-        adult: Picguard::Likelihood.violates?(hash_result[:adult], @threshold_adult),
+        violence: Validators::Likelihood.new(hash_result[:violence], @threshold_violence).call,
+        adult: Validators::Likelihood.new(hash_result[:adult], @threshold_adult).call,
       }
     end
 
