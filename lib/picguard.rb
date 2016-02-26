@@ -4,6 +4,7 @@ require "json"
 require "configuration"
 require "services/builders/request"
 require "services/analyzer"
+require "services/image_preparator"
 
 
 module Picguard
@@ -24,9 +25,11 @@ module Picguard
                    threshold_face: Picguard.configuration.threshold_face
                    )
 
+    prepared_image_path = Services::ImagePreparator.new(image_path).call
+
     Services::Analyzer.new(
       Services::Builders::Request.new(
-        image_path, safe_search, face_detection
+        prepared_image_path, safe_search, face_detection
       ).call,
       threshold_adult,
       threshold_violence,
