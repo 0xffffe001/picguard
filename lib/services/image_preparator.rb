@@ -37,7 +37,6 @@ module Services
     end
 
     def resize_dimensions(image)
-      binding.pry
       width, height = image.dimensions
       resize_to = @face_detection ? "face_detection" : "safe_search"
       order = width > height ? 0 : 1
