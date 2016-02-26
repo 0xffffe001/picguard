@@ -6,7 +6,7 @@ describe Services::Builders::Image do
 
   describe '#call' do
     it 'creates valid Google::Apis::VisionV1::Image object' do
-      expect(subject.call.class.name).to eq 'Google::Apis::VisionV1::Image'
+      expect(subject.call).to be_an_instance_of Google::Apis::VisionV1::Image
     end
   end
 end

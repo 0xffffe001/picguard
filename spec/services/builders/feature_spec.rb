@@ -9,7 +9,7 @@ describe Services::Builders::Feature do
 
     describe '#call' do
       it 'creates valid Google::Apis::VisionV1::Feature object' do
-        expect(subject.call.class.name).to eq 'Google::Apis::VisionV1::Feature'
+        expect(subject.call).to be_an_instance_of Google::Apis::VisionV1::Feature
       end
     end
   end
@@ -19,7 +19,7 @@ describe Services::Builders::Feature do
 
     describe '#call' do
       it 'creates valid Google::Apis::VisionV1::Feature object' do
-        expect(subject.call.class.name).to eq 'Google::Apis::VisionV1::Feature'
+        expect(subject.call).to be_an_instance_of Google::Apis::VisionV1::Feature
       end
     end
   end
