@@ -25,7 +25,7 @@ module Picguard
                    threshold_face: Picguard.configuration.threshold_face
                    )
 
-    prepared_image_path = Services::ImagePreparator.new(image_path).call
+    prepared_image_path = Services::ImagePreparator.new(image_path, face_detection, safe_search).call
 
     Services::Analyzer.new(
       Services::Builders::Request.new(
