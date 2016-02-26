@@ -1,4 +1,3 @@
-require "pry"
 require "likelihood"
 
 module Services
