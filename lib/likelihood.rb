@@ -14,8 +14,8 @@ module Picguard
 
       private_constant :RESPONSE_CLASSES
 
-      def appropriate?(response, threshold)
-        value_of(response) <= value_of(threshold)
+      def violates?(response, threshold)
+        value_of(response) > value_of(threshold)
       end
 
       private

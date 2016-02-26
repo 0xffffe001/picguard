@@ -28,8 +28,8 @@ module Services
 
     def analyze_safe_search_annotation(hash_result)
       {
-        violence: Picguard::Likelihood.appropriate?(hash_result[:violence], @threshold_violence),
-        adult: Picguard::Likelihood.appropriate?(hash_result[:adult], @threshold_adult),
+        violence: Picguard::Likelihood.violates?(hash_result[:violence], @threshold_violence),
+        adult: Picguard::Likelihood.violates?(hash_result[:adult], @threshold_adult),
       }
     end
 
