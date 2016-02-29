@@ -16,6 +16,7 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency "google-api-client"
   spec.add_dependency "mini_magick"
+  spec.add_dependency "activemodel"
   spec.add_development_dependency "pry"
   spec.add_development_dependency "bundler", "~> 1.11"
   spec.add_development_dependency "codeclimate-test-reporter"
