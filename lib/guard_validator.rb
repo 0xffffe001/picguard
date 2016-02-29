@@ -1,4 +1,5 @@
-require "picguard"
+require 'picguard'
+require 'active_model'
 
 class GuardValidator < ActiveModel::EachValidator
 
