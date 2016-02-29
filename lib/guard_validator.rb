@@ -5,9 +5,8 @@ class GuardValidator < ActiveModel::EachValidator
 
   def validate_each(record, attribute, value)
     image_path = fetch_image_path(record, attribute)
-    unless valid?(image_path)
-      record.errors.add(attribute, @message, options.merge(value: value))
-    end
+    return if valid?(image_path)
+    record.errors.add(attribute, @message, options.merge(value: value))
   end
 
   private
@@ -34,26 +33,26 @@ class GuardValidator < ActiveModel::EachValidator
         options[:threshold_face] || Picguard.configuration.threshold_face,
     )
 
-    return false if options[:safe_search] && safe_violation?(result)
+    return false if options[:safe_search] && safety_violated?(result)
     return false if options[:face_detection] && !face_recognised?(result)
     true
   end
 
-  def safe_violation?(result)
+  def safety_violated?(result)
     return false if (!result[:safe_search][:adult] && !result[:safe_search][:violence])
-    @message = "Picture shows inappropriate content."
+    @message = 'Picture shows inappropriate content.'
     true
   end
 
   def path_exists?(image_path)
     return true if image_path && File.exist?(image_path)
-    @message = "Picture doesn't exist."
+    @message = 'Picture doesn\'t exist.'
     false
   end
 
   def face_recognised?(result)
     return true if options[:face_detection] && result[:face_recognised]
-    @message = "Face could not be recognised on given picture."
+    @message = 'Face could not be recognised on given picture.'
     false
   end
 end
