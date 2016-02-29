@@ -1,6 +1,7 @@
 require "picguard/version"
 require "json"
 # require "picguard_init"
+require "guard_validator"
 require "configuration"
 require "services/builders/request"
 require "services/analyzer"
