@@ -3,15 +3,15 @@ require "picguard"
 class GuardValidator < ActiveModel::EachValidator
 
   def validate_each(record, attribute, value)
-    unless valid?
+    image_path = record.public_send(attribute).public_send(options[:method_name])
+    unless valid?(image_path)
       record.errors.add(attribute, @message, options.merge(value: value))
     end
   end
 
   private
 
-  def valid?
-    image_path = options[:image_path]
+  def valid?(image_path)
     return false unless path_exists?(image_path)
     result = Picguard.analyze(
       image_path:
