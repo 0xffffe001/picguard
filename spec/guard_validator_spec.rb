@@ -43,7 +43,7 @@ describe GuardValidator do
     end
   end
 
-  context 'with invalid picture' do
+  context 'face unrecognised' do
     let(:image_struct) { ImageStruct.new("spec/support/img/cat.jpg") }
     it 'is invalid' do
       expect(subject).not_to be_valid
@@ -52,7 +52,16 @@ describe GuardValidator do
     end
   end
 
-  context 'with no picture' do
+  context 'violent content' do
+    let(:image_struct) { ImageStruct.new("spec/support/img/gun-violence.jpg") }
+    it 'is invalid' do
+      expect(subject).not_to be_valid
+      expect(subject.errors[:image].size).to eq(1)
+      expect(subject.errors.messages[:image].first).to eq("Picture shows inappropriate content.")
+    end
+  end
+
+  context 'path to picture invalid' do
     let(:image_struct) { ImageStruct.new("") }
     it 'is invalid' do
       expect(subject).not_to be_valid
