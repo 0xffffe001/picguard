@@ -1,5 +1,4 @@
 require 'active_model'
-require 'guard_validator'
 require 'spec_helper'
 
 class ImageStruct

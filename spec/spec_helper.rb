@@ -1,5 +1,4 @@
 require 'codeclimate-test-reporter'
-CodeClimate::TestReporter.configuration.git_dir = "."
 CodeClimate::TestReporter.start
 SimpleCov.start do
   add_filter '/lib/google/apis'
