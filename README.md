@@ -34,9 +34,9 @@ end
 
 ##### Let's go through all of the attributes you need to set up in the config:
 
-`google_api_key` is the secret key that you use to authenticate to the Google Vision API, you can generate one that is connected to your Google Project. More about generating the key can be found [here](https://cloud.google.com/vision/docs/getting-started#setting_up_an_api_key). If you are completely new to the Google Cloud Platform you should probably start [here](https://cloud.google.com/vision/docs/getting-started).
-`threshold_adult` and `threshold_violence` are the thresholds for the adult and violent content. This is the highest value that you consider acceptable, everything above this level will be categorised as unsafe. For all of the likelihood levels please check [this piece of documentation](https://cloud.google.com/vision/reference/rest/v1/images/annotate#Likelihood).
-`threshold_face` is the threshold for face recognition. Google responds with a float value from 0 to 1 that reflects how sure the Google API is when it comes to face recognition. Only the picture with values above your threshold will be categorised as the ones containing human face.
+`google_api_key` is the secret key that you use to authenticate to the Google Vision API, you can generate one that is connected to your Google Project. More about generating the key can be found [here](https://cloud.google.com/vision/docs/getting-started#setting_up_an_api_key). If you are completely new to the Google Cloud Platform you should probably start [here](https://cloud.google.com/vision/docs/getting-started).   
+`threshold_adult` and `threshold_violence` are the thresholds for the adult and violent content. This is the highest value that you consider acceptable, everything above this level will be categorised as unsafe. For all of the likelihood levels please check [this piece of documentation](https://cloud.google.com/vision/reference/rest/v1/images/annotate#Likelihood).   
+`threshold_face` is the threshold for face recognition. Google responds with a float value from 0 to 1 that reflects how sure the Google API is when it comes to face recognition. Only the pictures with values above your threshold will be categorised as the ones showing human face.   
 
 ## Validations
 To validate the content of the picture simply add the following validation to your model:
@@ -50,14 +50,14 @@ To validate the content of the picture simply add the following validation to yo
 ```
 ###### where
 
-`image` is the name of the model's attribute that should be validated
-`guard` is the name of the picguard validator
-`safe_search` and `face_detection` are the flags reflecting what should be validated for given model
-`method_name` is the name of the `image`'s attribute method that returns image file path
+`image` is the name of the model's attribute that should be validated   
+`guard` is the name of the picguard validator  
+`safe_search` and `face_detection` are the flags reflecting what should be validated for given model   
+`method_name` value is the name of the `image`'s attribute method that returns image file path     
 
 ## Sample validations for popular file-uploading gems
 
-### CarrierWave
+### [CarrierWave](https://github.com/carrierwaveuploader/carrierwave)
 
 ```ruby
 class User < ActiveRecord::Base
@@ -70,6 +70,41 @@ class User < ActiveRecord::Base
   }
 end
 ```
+
+### [Paperclip](https://github.com/thoughtbot/paperclip)
+
+```ruby
+class User < ActiveRecord::Base
+  has_attached_file :avatar,
+    styles: { medium: '300x300>', thumb: '100x100>' },
+    default_url: "/images/:style/missing.jpg"
+
+  validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
+
+  validates :avatar, guard: {
+    safe_search: false,
+    face_detection: true,
+    threshold_face: 0.5,
+    method_name: :staged_path
+  }
+end
+```
+
+### [Dragonfly](https://github.com/markevans/dragonfly)
+
+```ruby
+class User < ActiveRecord::Base
+  dragonfly_accessor :avatar
+
+  validates :avatar, presence: true, guard: {
+    safe_search: true,
+    threshold_adult: 'VERY_LIKELY',
+    method_name: [:tempfile, :path]
+  }
+end
+```
+
+*NOTE: Sometimes to return file path it's necessary to chain methods such as `avatar.tempfile.path`. In such case you need to pass an array of symbols to the `method_name` attribute (e.g. `[:tempfile, :path])`*
 
 ## License
 
