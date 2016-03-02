@@ -11,7 +11,7 @@ Picguard lets you configure your preferences (globally or separately for each mo
 
 ## Installation
 
-Add Draper to your Gemfile:
+Add Picguard to your Gemfile:
 
 ```ruby
 gem 'picguard'
@@ -54,6 +54,22 @@ To validate the content of the picture simply add the following validation to yo
 `guard` is the name of the picguard validator
 `safe_search` and `face_detection` are the flags reflecting what should be validated for given model
 `method_name` is the name of the `image`'s attribute method that returns image file path
+
+## Sample validations for popular file-uploading gems
+
+### CarrierWave
+
+```ruby
+class User < ActiveRecord::Base
+  mount_uploader :avatar, AvatarUploader
+
+  validates :avatar, guard: {
+    safe_search: true,
+    face_detection: true,
+    method_name: :path
+  }
+end
+```
 
 ## License
 
