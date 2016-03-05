@@ -6,7 +6,7 @@ Picguard guards your application by filtering out the pictures showing inappropr
 It uses Google Vision API to process the pictures that are being uploaded via your application.
 
 # Why use Picguard?
-Imagine a business application that allows user to upload a photo when creating his profile. The user is free to upload any kind of picture (including pictures showing violent scenes or adult content). The most popular solution for that is implementing a feature that allows other users to report the inappropriate content - which means you rely on your users when it comes to the safety of your application - not so great. Another scenario would be: what if for a profile picture an application should only allow the picture showing a human face? The solution would be often the same as in the first example.
+Imagine a business application that allows user to upload a photo when creating his profile. The user is free to upload any kind of picture (including pictures showing violent scenes or adult content). The most popular solution for that is implementing a feature that allows other users to report the inappropriate content - which means you rely on your users when it comes to the safety of your application - not so great. Another scenario would be: what if for a profile picture an application should only allow the picture showing a human face? The soultion would be often the same as in the first example.
 Picguard lets you configure your preferences (globally or separately for each model) for image filtering and gives you a clean solution to validate the picture before it's saved.
 
 ## Requirements
@@ -123,6 +123,10 @@ class User < ActiveRecord::Base
   }
 end
 ```
+
+## Dependencies
+
+We use two main dependencies - **[Google API Client gem](https://github.com/google/google-api-ruby-client)** to connect with the Goole Cloud Vision API, and the **[MiniMagick gem](https://github.com/minimagick/minimagick)** to resize bigger pictures before proccessing them via Google Cloud.   
 
 ## License
 
