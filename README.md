@@ -6,7 +6,7 @@ Picguard guards your application by filtering out the pictures showing inappropr
 It uses Google Vision API to process the pictures that are being uploaded via your application.
 
 # Why use Picguard?
-Imagine a business application that allows user to upload a photo when creating his profile. The user is free to upload any kind of picture (including pictures showing violent scenes or adult content). The most popular solution for that is implementing a feature that allows other users to report the inappropriate content - which means you rely on your users when it comes to the safety of your application - not so great. Another scenario would be: what if for a profile picture an application should only allow the picture showing a human face? The soultion would be often the same as in the first example.
+Imagine a business application that allows user to upload a photo when creating his profile. The user is free to upload any kind of picture (including pictures showing violent scenes or adult content). The most popular solution for that is implementing a feature that allows other users to report the inappropriate content - which means you rely on your users when it comes to the safety of your application - not so great. Another scenario would be: what if for a profile picture an application should only allow the picture showing a human face? The solution would be often the same as in the first example.
 Picguard lets you configure your preferences (globally or separately for each model) for image filtering and gives you a clean solution to validate the picture before it's saved.
 
 ## Requirements
@@ -73,6 +73,8 @@ To validate the content of the picture simply add the following validation to yo
 `safe_search` and `face_detection` are the flags reflecting what should be validated for given model   
 `method_name` value is the name of the `image`'s attribute method that returns image file path     
 
+*NOTE: Sometimes to return file path it's necessary to chain methods such as `avatar.tempfile.path`. In such case you need to pass an array of symbols to the `method_name` attribute (e.g. `[:tempfile, :path])`. For popular file-uploading gems, Picguard gives you a `tool` attribute that is used interchangeably with the `method_name`. More examples below.*   
+
 ## Sample validations for popular file-uploading gems
 
 ### [CarrierWave](https://github.com/carrierwaveuploader/carrierwave)
@@ -121,8 +123,6 @@ class User < ActiveRecord::Base
   }
 end
 ```
-
-*NOTE: Sometimes to return file path it's necessary to chain methods such as `avatar.tempfile.path`. In such case you need to pass an array of symbols to the `method_name` attribute (e.g. `[:tempfile, :path])`*
 
 ## License
 
