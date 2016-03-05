@@ -2,6 +2,12 @@ require 'picguard'
 require 'active_model'
 
 class GuardValidator < ActiveModel::EachValidator
+  METHOD_NAMES = {
+    carrierwave:  :path,
+    paperclip:    :staged_path,
+    dragonfly:    [:tempfile, :path]
+  }.freeze
+  private_constant :METHOD_NAMES
 
   def validate_each(record, attribute, value)
     image_path = fetch_image_path(record, attribute)
@@ -12,8 +18,12 @@ class GuardValidator < ActiveModel::EachValidator
   private
 
   def fetch_image_path(record, attribute)
-    arr = [attribute].push(*Array(options[:method_name]))
+    arr = [attribute].push(*Array(fetch_method_names))
     arr.inject(record, :public_send)
+  end
+
+  def fetch_method_names
+    options[:tool].present? ? METHOD_NAMES.fetch(options[:tool]) : options[:method_name]
   end
 
   def valid?(image_path)

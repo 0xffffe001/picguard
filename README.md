@@ -84,7 +84,7 @@ class User < ActiveRecord::Base
   validates :avatar, guard: {
     safe_search: true,
     face_detection: true,
-    method_name: :path
+    tool: :carrierwave
   }
 end
 ```
@@ -103,7 +103,7 @@ class User < ActiveRecord::Base
     safe_search: false,
     face_detection: true,
     threshold_face: 0.5,
-    method_name: :staged_path
+    tool: :paperclip
   }
 end
 ```
@@ -117,7 +117,7 @@ class User < ActiveRecord::Base
   validates :avatar, presence: true, guard: {
     safe_search: true,
     threshold_adult: 'VERY_LIKELY',
-    method_name: [:tempfile, :path]
+    tool: :dragonfly
   }
 end
 ```
