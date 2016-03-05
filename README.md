@@ -9,6 +9,24 @@ It uses Google Vision API to process the pictures that are being uploaded via yo
 Imagine a business application that allows user to upload a photo when creating his profile. The user is free to upload any kind of picture (including pictures showing violent scenes or adult content). The most popular solution for that is implementing a feature that allows other users to report the inappropriate content - which means you rely on your users when it comes to the safety of your application - not so great. Another scenario would be: what if for a profile picture an application should only allow the picture showing a human face? The soultion would be often the same as in the first example.
 Picguard lets you configure your preferences (globally or separately for each model) for image filtering and gives you a clean solution to validate the picture before it's saved.
 
+## Requirements
+
+[ImageMagick](http://www.imagemagick.org) must be installed and Picguard must have access to it.
+
+If you're on Mac OS X, you'll want to run the following with Homebrew:
+
+```bash
+brew install imagemagick
+```
+
+If you're on Ubuntu (or any Debian base Linux distribution), you'll want to run the following with apt-get:
+
+```bash
+sudo apt-get install imagemagick
+```
+
+After the installation you should be able to run `which convert` in your terminal and you should see for example `/usr/local/bin/convert` as a response.
+
 ## Installation
 
 Add Picguard to your Gemfile:
