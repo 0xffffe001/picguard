@@ -124,6 +124,30 @@ class User < ActiveRecord::Base
 end
 ```
 
+## Custom usage
+
+We also provide `analyze` method to analyze images wherever you want:
+
+```ruby
+Picguard.analyze(
+  image_path: 'path/to/image',
+  safe_search: true,
+  face_detection: true,
+  threshold_adult: 'POSSIBLE',
+  threshold_violence: 'UNLIKELY',
+  threshold_face: 0.7
+)
+```
+
+* `image_path` - provide path to image
+* `safe_search` - determine whether image should be safe due to adult and violence content [`true`/`false`]
+* `face_detection` - determine whether image should contain human face [`true`/`false`]
+* `threshold_adult` - [*optional*] provide threshold for adult content different than defined in initializer
+* `threshold_violence` - [*optional*] provide threshold for violence content different than defined in initializer
+* `threshold_face` - [*optional*] provide threshold for face detection different than defined in initializer
+
+Beware of the fact that bigger the image, longer the process of image analysis. For bigger images than *2000px x 2000px* consider using progress bars or background processing solutions like [Sidekiq](https://github.com/mperham/sidekiq), [Resque](https://github.com/resque/resque), [DelayedJob](https://github.com/collectiveidea/delayed_job), etc.
+
 ## Dependencies
 
 We use two main dependencies - **[Google API Client gem](https://github.com/google/google-api-ruby-client)** to connect with the Goole Cloud Vision API, and the **[MiniMagick gem](https://github.com/minimagick/minimagick)** to resize bigger pictures before proccessing them via Google Cloud.   
