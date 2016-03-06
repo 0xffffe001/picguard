@@ -146,7 +146,7 @@ Picguard.analyze(
 * `threshold_violence` - [*optional*] provide threshold for violence content different than defined in initializer
 * `threshold_face` - [*optional*] provide threshold for face detection different than defined in initializer
 
-Beware of the fact that bigger the image, longer the process of image analysis. For bigger images than *2000px x 2000px* consider using progress bars or background processing solutions like [Sidekiq](https://github.com/mperham/sidekiq), [Resque](https://github.com/resque/resque), [DelayedJob](https://github.com/collectiveidea/delayed_job), etc.
+*NOTE: the bigger the image, the longer it takes to analyze it. For images bigger than `2000px x 2000px` consider using progress bars or background processing solutions like [Sidekiq](https://github.com/mperham/sidekiq), [Resque](https://github.com/resque/resque), [DelayedJob](https://github.com/collectiveidea/delayed_job), etc.*
 
 ## Dependencies
 
