@@ -1,6 +1,6 @@
-# Picguard
 [![Code Climate](https://codeclimate.com/repos/56cdc29e7220a54948003189/badges/6455466a41f102f5f517/gpa.svg)](https://codeclimate.com/repos/56cdc29e7220a54948003189/feed) [![Test Coverage](https://codeclimate.com/repos/56cdc29e7220a54948003189/badges/6455466a41f102f5f517/coverage.svg)](https://codeclimate.com/repos/56cdc29e7220a54948003189/coverage)
 [![Circle CI](https://circleci.com/gh/netguru/picguard.svg?style=svg)](https://circleci.com/gh/netguru/picguard)
+![](https://raw.githubusercontent.com/netguru/picguard/master/picguard_logo.png)
 
 Picguard guards your application by filtering out the pictures showing inappropriate content.
 It uses Google Vision API to process the pictures that are being uploaded via your application.
