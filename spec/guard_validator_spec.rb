@@ -34,6 +34,9 @@ describe GuardValidator do
       config.threshold_face = 0.8
     end
   end
+
+  after(:each) { sleep 1 }
+
   subject { ModelStruct.new(image_struct) }
 
   context 'with valid picture' do
