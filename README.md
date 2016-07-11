@@ -6,6 +6,8 @@
 Picguard guards your application by filtering out the pictures showing inappropriate content.
 It uses Google Vision API to process the pictures that are being uploaded via your application.
 
+[See demo](http://picguard.netguru.co/)
+
 # Why use Picguard?
 Imagine a business application that allows user to upload a photo when creating his profile. The user is free to upload any kind of picture (including pictures showing violent scenes or adult content). The most popular solution for that is implementing a feature that allows other users to report the inappropriate content - which means you rely on your users when it comes to the safety of your application - not so great. Another scenario would be: what if for a profile picture an application should only allow the picture showing a human face? The soultion would be often the same as in the first example.
 Picguard lets you configure your preferences (globally or separately for each model) for image filtering and gives you a clean solution to validate the picture before it's saved.
